@@ -26,6 +26,7 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
+
   // This regular expression check that the email is of a valid format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   if (!emailRegex.test(email)) {
@@ -42,6 +43,8 @@ router.post("/signup", (req, res, next) => {
     });
     return;
   }
+
+
 
   // Check the users collection if a user with the same email already exists
   User.findOne({ email })
@@ -74,6 +77,8 @@ router.post("/signup", (req, res, next) => {
     .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
 });
 
+
+
 // POST  /auth/login - Verifies email and password and returns a JWT
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
@@ -83,7 +88,6 @@ router.post("/login", (req, res, next) => {
     res.status(400).json({ message: "Provide email and password." });
     return;
   }
-
   // Check the users collection if a user with the same email exists
   User.findOne({ email })
     .then((foundUser) => {
@@ -119,7 +123,7 @@ router.post("/login", (req, res, next) => {
 });
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
-router.get("/verify", isAuthenticated, (req, res, next) => {
+router.get("/verify", isAuthenticated, (req, res) => {
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and is made available on `req.payload`
   console.log(`req.payload`, req.payload);

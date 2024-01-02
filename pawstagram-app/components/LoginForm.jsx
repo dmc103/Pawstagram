@@ -8,18 +8,38 @@ function LoginForm({ onLoginSuccess }){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
-            event.preventDefault();
-            const credentials = {
-                email,
-                password
-            };
-        console.log(credentials);
-        onLoginSuccess();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              password,
+            }),
 
-    };
-    LoginForm.propTypes = {
-        onLoginSuccess: PropTypes.func.isRequired,
+          });
+          const data = await response.json();
+
+          if (response.ok) {
+
+            //storing the token in local storage
+            localStorage.setItem('authToken', data.authToken);
+            onLoginSuccess(data.authToken);
+
+          }else {
+            // handle error
+            //we can also show the error message to the user by using alert instead of console.log
+            console.log(data.message);
+          }
+
+        }catch (error) {
+          console.log('Error during login process:', error);
+        }
+        
       };
 
   return (
@@ -96,6 +116,11 @@ function LoginForm({ onLoginSuccess }){
     
   );
 }
+
+//props validation
+LoginForm.propTypes = {
+  onLoginSuccess: PropTypes.func.isRequired,
+};
 
 
 export default LoginForm;
