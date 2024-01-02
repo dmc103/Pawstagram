@@ -34,7 +34,7 @@ function LoginForm({ onLoginSuccess }){
             you need to Log In first
           </p>
           <div>
-          <img src={logo} alt="Pawstagram logo" className="mx-auto w-1/4 h-auto"/>
+          <img src={logo} alt="Pawstagram logo" className="mx-auto w-32 sm:w-24 md:w-20 lg:w-16 h-auto"/>
           <h1 className="text-tl font-bold my-4">Pawstagram</h1>
 
           </div>
