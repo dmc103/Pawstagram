@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import logo from '../src/assets/pawstagram_logo.gif';
+import logo from '../src/assets/Pawstagram_static.png';
 
 
 
@@ -43,7 +43,7 @@ function LoginForm({ onLoginSuccess }){
       };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-100">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-bold text-gray-900">
@@ -51,11 +51,12 @@ function LoginForm({ onLoginSuccess }){
           </h2>
           <br />
           <p className="mt-2 text-sm text-gray-600">
-            you need to Log In first
+            You need to Log In first
           </p>
           <div>
-          <img src={logo} alt="Pawstagram logo" className="mx-auto w-32 sm:w-24 md:w-20 lg:w-16 h-auto"/>
-          <h1 className="text-tl font-bold my-4">Pawstagram</h1>
+          <img src={logo} alt="Pawstagram logo" className="mx-auto w-32 sm:w-48 md:w-56 lg:w-64 h-auto"/>
+          
+          <h1 className="text-xl font-bold my-4 text-gray-600">Pawstagram</h1>
 
           </div>
 
