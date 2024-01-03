@@ -1,6 +1,6 @@
 
-import LoginForm from '/components/LoginForm';
-import './App.css'
+import LoginForm from '/src/components/LoginForm';
+
 
 
 
@@ -10,7 +10,7 @@ function App () {
   };
 
   return (
-      <div className="App text-center">
+      <div className="min-h-screen flex items-center justify-center bg-white">
       
       <LoginForm onLoginSuccess={handleLoginSuccess} />
       </div>

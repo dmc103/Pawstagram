@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import logo from '../src/assets/Pawstagram_static.png';
+import logo from '../assets/Pawstagram_static.png';
 
 
 
@@ -125,3 +125,4 @@ LoginForm.propTypes = {
 
 
 export default LoginForm;
+
