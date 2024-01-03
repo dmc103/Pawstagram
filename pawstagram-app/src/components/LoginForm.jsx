@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import logo from '../assets/Pawstagram_static.png';
+import logo from '../assets/pawstagram_logo.gif';
 
 
 
