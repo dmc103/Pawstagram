@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import logo from '../assets/pawstagram_logo.gif';
 
@@ -11,20 +13,14 @@ function LoginForm({ onLoginSuccess }){
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-          const response = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
+          const response = await axios.post('/api/auth/login', {
               email,
               password,
-            }),
+            });
 
-          });
-          const data = await response.json();
+          const data = response.data;
 
-          if (response.ok) {
+          if (response.status === 200) {
 
             //storing the token in local storage
             localStorage.setItem('authToken', data.authToken);
@@ -33,14 +29,20 @@ function LoginForm({ onLoginSuccess }){
           }else {
             // handle error
             //we can also show the error message to the user by using alert instead of console.log
-            console.log(data.message);
+            alert(data.message);
           }
 
-        }catch (error) {
-          console.log('Error during login process:', error);
+        } catch (error) {
+          if (error.response) {
+          console.log('Login error :', error.response.data);
+          alert(error.response.data.message);
+          } else {
+            console.log('Error during login process :', error.message);
+            alert('An error occurred during login, please try again');
         }
         
-      };
+      }
+    }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
@@ -54,6 +56,7 @@ function LoginForm({ onLoginSuccess }){
             You need to Log In first
           </p>
           <div>
+          <br/>
           <img src={logo} alt="Pawstagram logo" className="mx-auto w-32 sm:w-48 md:w-56 lg:w-64 h-auto"/>
           
           <h1 className="text-xl font-bold my-4 text-gray-600">Pawstagram</h1>
@@ -66,7 +69,7 @@ function LoginForm({ onLoginSuccess }){
             type="email"
             name="email"
             className="w-full p-3 border border-gray-300 rounded-md"
-            placeholder="Username or Email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -107,9 +110,7 @@ function LoginForm({ onLoginSuccess }){
         <div className="text-center">
           <p className="mt-2 text-sm text-gray-600">
           Don&apos;t have an account?{' '}
-            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Register
-            </a>
+          <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">Register</Link>
           </p>
         </div>
       </div>
@@ -117,6 +118,8 @@ function LoginForm({ onLoginSuccess }){
     
   );
 }
+
+
 
 //props validation
 LoginForm.propTypes = {

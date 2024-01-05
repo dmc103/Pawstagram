@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.5",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -24,7 +25,8 @@
     "postcss": "^8.4.32",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

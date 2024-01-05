@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 
@@ -17,12 +18,12 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
-router.post("/signup", (req, res, next) => {
-  const { email, password, name } = req.body;
+router.post("auth/register", (req, res, next) => {
+  const { email, userName, firstName, lastName, password } = req.body;
 
   // Check if email or password or name are provided as empty strings
-  if (email === "" || password === "" || name === "") {
-    res.status(400).json({ message: "Provide email, password and name" });
+  if (email === "" || userName ==="" || firstName === "" || lastName === "" ||password === "") {
+    res.status(400).json({ message: "Provide missing information to complete your registration" });
     return;
   }
 
@@ -61,15 +62,19 @@ router.post("/signup", (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, name });
+      return User.create({ email,
+        userName,
+        firstName,
+        lastName, 
+        password: hashedPassword});
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object to omit the password
       // We should never expose passwords publicly
-      const { email, name, _id } = createdUser;
+      const { email, userName, _id } = createdUser;
 
       // Create a new object that doesn't expose the password
-      const user = { email, name, _id };
+      const user = { email, userName, _id };
 
       // Send a json response containing the user object
       res.status(201).json({ user: user });
