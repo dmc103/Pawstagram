@@ -19,7 +19,7 @@ function RegisterPage() {
             return;
         }
 
-        axios.post('/register', {
+        axios.post('http://localhost:5005/auth/register', {
             email,
             userName,
             firstName,
@@ -37,9 +37,17 @@ function RegisterPage() {
 
 
         .catch((err) => {
-            console.log(err);
-        })
-    };
+            if (err.response) {
+                console.log('Register error :', err.response.data);
+                alert(err.response.data.message);
+            } else if (err.request) {
+                console.log('Register error :', err.request);
+                alert('An error occurred while submitting the form');
+            } else {
+                console.log('ERROR', err.message);
+        }
+    });
+}
 
 
 

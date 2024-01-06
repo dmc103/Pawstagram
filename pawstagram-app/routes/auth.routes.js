@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 
+
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 
@@ -18,7 +19,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
-router.post("auth/register", (req, res, next) => {
+router.post("/register", (req, res, next) => {
   const { email, userName, firstName, lastName, password } = req.body;
 
   // Check if email or password or name are provided as empty strings
@@ -36,11 +37,11 @@ router.post("auth/register", (req, res, next) => {
   }
 
   // This regular expression checks password for special characters and minimum length
-  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,}/;
   if (!passwordRegex.test(password)) {
     res.status(400).json({
       message:
-        "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.",
+        "Password must have at least 3 characters and contain at least one number, one lowercase and one uppercase letter.",
     });
     return;
   }
