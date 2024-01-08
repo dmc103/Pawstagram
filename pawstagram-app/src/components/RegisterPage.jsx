@@ -96,7 +96,7 @@ function RegisterPage() {
               name="firstname"
               id="firstname"
               className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
-              placeholder="firstName"
+              placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
@@ -107,7 +107,7 @@ function RegisterPage() {
               name="lastname"
               id="lastname"
               className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
-              placeholder="lastName"
+              placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
