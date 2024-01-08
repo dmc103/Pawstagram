@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
     const [ email, setEmail ] = useState('');
@@ -9,6 +10,7 @@ function RegisterPage() {
     const [ lastName, setLastName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState ('')
+    const navigate = useNavigate();
 
 
     const handleSubmit = async(event) => {
@@ -29,11 +31,14 @@ function RegisterPage() {
         })
         .then((response) => {
             console.log(response.data);
+            navigate('/login');
+
             //will refer the user later to their account page
             //still to build the account page
             //be-right-back.... :)
 
         })
+
 
 
         .catch((err) => {

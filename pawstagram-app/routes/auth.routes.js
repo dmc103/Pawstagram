@@ -22,6 +22,8 @@ const saltRounds = 10;
 router.post("/register", (req, res, next) => {
   const { email, userName, firstName, lastName, password } = req.body;
 
+  console.log(req.body);
+
   // Check if email or password or name are provided as empty strings
   if (email === "" || userName ==="" || firstName === "" || lastName === "" ||password === "") {
     res.status(400).json({ message: "Provide missing information to complete your registration" });

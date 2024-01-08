@@ -22,7 +22,7 @@ function LoginForm({ onLoginSuccess }){
 
           if (response.status === 200) {
 
-            //storing the token in local storage
+            //storing the token in local storage...for now
             localStorage.setItem('authToken', data.authToken);
             onLoginSuccess(data.authToken);
 
