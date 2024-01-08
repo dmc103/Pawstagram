@@ -46,7 +46,7 @@ function LoginForm({ onLoginSuccess }){
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10">
+      <div className="max-w-md w-full space-y-8 p-10 bg-teal-200 rounded-xl shadow-lg z-10">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-bold text-gray-900">
             WELCOME BACK
@@ -68,7 +68,7 @@ function LoginForm({ onLoginSuccess }){
           <input
             type="email"
             name="email"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -78,7 +78,7 @@ function LoginForm({ onLoginSuccess }){
           <input
             type="password"
             name="password"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

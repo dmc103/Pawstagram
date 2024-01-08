@@ -55,14 +55,11 @@ function RegisterPage() {
             
 }
 
-
-
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="max-w-md w-full space-y-8 p-10 bg-teal-200 rounded-xl shadow-lg z-10">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-indigo-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-indigo-900 ">
           Welcome
         </h2>
         <p className="mt-2 text-center text-sm text-indigo-700">{registerSuccess ? 'REGISTRATION SUCCESSFUL' : 'PLEASE REGISTER HERE'}</p>
@@ -76,7 +73,7 @@ function RegisterPage() {
               type="email"
               name="email"
               id="email"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +84,7 @@ function RegisterPage() {
               type="username"
               name="username"
               id="username"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="Username"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
@@ -98,7 +95,7 @@ function RegisterPage() {
               type="firstname"
               name="firstname"
               id="firstname"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="firstName"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -109,7 +106,7 @@ function RegisterPage() {
               type="lastname"
               name="lastname"
               id="lastname"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="lastName"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
@@ -120,7 +117,7 @@ function RegisterPage() {
               type="password"
               name="password"
               id="password"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -131,7 +128,7 @@ function RegisterPage() {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              className="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full p-3 border border-gray-300 bg-amber-50 rounded-md"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
