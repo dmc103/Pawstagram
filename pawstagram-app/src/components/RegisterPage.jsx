@@ -9,8 +9,10 @@ function RegisterPage() {
     const [ firstName, setFirstName ] = useState('');
     const [ lastName, setLastName ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ confirmPassword, setConfirmPassword ] = useState ('')
+    const [ confirmPassword, setConfirmPassword ] = useState ('');
+    const [ registerSuccess, setRegisterSuccess ] = useState(false);
     const navigate = useNavigate();
+    
 
 
     const handleSubmit = async(event) => {
@@ -21,37 +23,36 @@ function RegisterPage() {
             return;
         }
 
-        axios.post('http://localhost:5005/auth/register', {
+        try {
+          const response = await axios.post('http://localhost:5005/auth/register', {
             email,
             userName,
             firstName,
             lastName,
             password,
             confirmPassword
-        })
-        .then((response) => {
-            console.log(response.data);
-            navigate('/login');
+        });
+        console.log(response.data);
+        setRegisterSuccess(true);
 
-            //will refer the user later to their account page
-            //still to build the account page
-            //be-right-back.... :)
-
-        })
+        setTimeout(() => 
+            navigate('/login'), 2000);
 
 
+        } catch (error) {
+          if (error.response) {
+            console.log('Register error :', error.response.data);
+            alert(error.response.data.message);
+          } else if (error.request) {
+            console.log('Register error :', error.request);
+            alert('An error occurred while submitting the form');
+          } else {
+            console.log('Error: ', error.message);
+            alert('Registration failed. Please try again.');
+          }
 
-        .catch((err) => {
-            if (err.response) {
-                console.log('Register error :', err.response.data);
-                alert(err.response.data.message);
-            } else if (err.request) {
-                console.log('Register error :', err.request);
-                alert('An error occurred while submitting the form');
-            } else {
-                console.log('ERROR', err.message);
         }
-    });
+            
 }
 
 
@@ -64,9 +65,8 @@ function RegisterPage() {
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Welcome
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          PLEASE REGISTER HERE
-        </p>
+        <p className="mt-2 text-center text-sm text-indigo-700">{registerSuccess ? 'REGISTRATION SUCCESSFUL' : 'PLEASE REGISTER HERE'}</p>
+
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
